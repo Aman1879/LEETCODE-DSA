@@ -4,10 +4,10 @@ class Solution {
         int ind = 0;
 
         for(int i=1; i<=n/2; i++){
-            res[ind++] = i;
-            
-            res[ind++] = -i;
-           
+            res[ind] = i;
+            ind++;
+            res[ind] = -i;
+           ind++;
 
         }
 
