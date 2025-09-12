@@ -1,10 +1,13 @@
 class Solution {
-  public boolean doesAliceWin(String s) {
-    
-    return s.chars().anyMatch(c -> isVowel((char) c));
-  }
+    public boolean doesAliceWin(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case 'a','e','i','o','u':
+                    return true;
+            }
+        }
 
-  private boolean isVowel(char c) {
-    return "aeiou".indexOf(Character.toLowerCase(c)) != -1;
-  }
+        return false;
+    }
 }
