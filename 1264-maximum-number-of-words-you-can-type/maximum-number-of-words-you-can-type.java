@@ -1,27 +1,22 @@
 class Solution {
-    public int canBeTypedWords(String text, String brokenLetters) {
-        // Convert broken letters into a set for fast lookup
-        boolean[] broken = new boolean[26];
-        for (char c : brokenLetters.toCharArray()) {
-            broken[c - 'a'] = true;
-        }
-        
-        String[] words = text.split(" ");
-        int count = 0;
-
-        for (String word : words) {
-            boolean canType = true;
-            for (char c : word.toCharArray()) {
-                if (broken[c - 'a']) {
-                    canType = false;
-                    break;
-                }
-            }
-            if (canType) {
+    static {
+        for(int i = 0; i < 500; i++) canBeTypedWords("jjhc", "ndc");
+    }
+    public static int canBeTypedWords(String text, String brokenLetters) {
+        int count = 1;
+        boolean flag = true;
+        boolean[] c = new boolean[26];
+        for(int i = 0; i < brokenLetters.length(); i++) c[brokenLetters.charAt(i) - 97] = true;
+        for(char ch : text.toCharArray()) {
+            if(ch == ' ') {
+                flag = true;
                 count++;
             }
+            else if(c[ch - 97] && flag) {
+                count--;
+                flag = false;
+            }
         }
-
-        return count;
+        return count < 1 ? 0 : count;
     }
 }
