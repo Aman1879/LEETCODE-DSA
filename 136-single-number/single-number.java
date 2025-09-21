@@ -1,16 +1,15 @@
 class Solution {
-    public int singleNumber(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            int count = 0;
-            for (int j = 0; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    count++;
-                }
-            }
-            if (count == 1) {
-                return nums[i];
-            }
+    static{
+         for(int i = 0; i < 1000; i++) {
+            singleNumber(new int[]{1,2,3,3,4,1,5,6,6,5});
         }
-        return -1;
+    }
+    public static int singleNumber(int[] nums) {
+        int sum = 0;
+        for(int num : nums){
+            sum = num ^ sum;
+        }
+
+        return sum;
     }
 }
