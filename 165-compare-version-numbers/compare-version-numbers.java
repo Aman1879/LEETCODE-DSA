@@ -1,29 +1,17 @@
 class Solution {
-    public int compareVersion(String version1, String version2) {
-        int i = 0, j = 0;
-        int n = version1.length(), m = version2.length();
+  public int compareVersion(String version1, String version2) {
+    final String[] levels1 = version1.split("\\.");
+    final String[] levels2 = version2.split("\\.");
+    final int length = Math.max(levels1.length, levels2.length);
 
-        while (i < n || j < m) {
-            long num1 = 0, num2 = 0; // long to avoid overflow
-
-            while (i < n && version1.charAt(i) != '.') {
-                num1 = num1 * 10 + (version1.charAt(i) - '0');
-                i++;
-            }
-
-            while (j < m && version2.charAt(j) != '.') {
-                num2 = num2 * 10 + (version2.charAt(j) - '0');
-                j++;
-            }
-
-            if (num1 > num2) return 1;
-            if (num1 < num2) return -1;
-
-            // skip dots
-            if (i < n && version1.charAt(i) == '.') i++;
-            if (j < m && version2.charAt(j) == '.') j++;
-        }
-
-        return 0;
+    for (int i = 0; i < length; ++i) {
+      final Integer v1 = i < levels1.length ? Integer.parseInt(levels1[i]) : 0;
+      final Integer v2 = i < levels2.length ? Integer.parseInt(levels2[i]) : 0;
+      final int compare = v1.compareTo(v2);
+      if (compare != 0)
+        return compare;
     }
+
+    return 0;
+  }
 }
